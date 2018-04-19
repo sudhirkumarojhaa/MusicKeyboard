@@ -8,107 +8,55 @@
   <link rel="icon" href="images/drum.png" type="image/gif">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <title>Drum</title>
-  <style>
-    body {
-      background-image: url("images/bg.jpg");
-    }
-
-    .container {
-      margin: 15%;
-    }
-
-    .keys {
-      display: inline;
-    }
-
-    .fa-angle-down {
-      color: #fff;
-      font-size: 30px;
-      text-align: center;
-    }
-
-    .key {
-      width: 40px;
-      height: 40px;
-      color: #fff;
-      background: #000;
-      font-size: 30px;
-      text-align: center;
-      border: 3px solid red;
-      transition: all .07s;
-      padding: 20px;
-      overflow: hidden;
-      float: left;
-      margin: 20px;
-      border-radius: 50%;
-    }
-
-    .playing {
-      transform: scale(1.1);
-      border: 13px solid orange;
-      box-shadow: 3px 3px 43px red;
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-  <div class="container">
-    <div class="keys">
-      <div class="key" data-key="65">
-        <kbd>A</kbd>
-        <span class="sound"></span>
+  <section class="drum">
+    <div class="container">
+      <div class="keys">
+        <div class="key" data-key="65">
+          <kbd>A</kbd>
+          <span class="sound"></span>
+        </div>
+        <div class="key" data-key="83">
+          <kbd>S</kbd>
+          <span class="sound"></span>
+        </div>
+        <div class="key" data-key="68">
+          <kbd>D</kbd>
+          <span class="sound"></span>
+        </div>
+        <div class="key" data-key="70">
+          <kbd>F</kbd>
+          <span class="sound"></span>
+        </div>
+        <div class="key" data-key="71">
+          <kbd>G</kbd>
+          <span class="sound"></span>
+        </div>
+        <div class="key" data-key="72">
+          <kbd>H</kbd>
+          <span class="sound"></span>
+        </div>
+        <div class="key" data-key="40">
+          <kbd>
+            <i class="fa fa-angle-down" aria-hidden="true"></i>
+          </kbd>
+          <span class="sound"></span>
+        </div>
       </div>
-      <div class="key" data-key="83">
-        <kbd>S</kbd>
-        <span class="sound"></span>
-      </div>
-      <div class="key" data-key="68">
-        <kbd>D</kbd>
-        <span class="sound"></span>
-      </div>
-      <div class="key" data-key="70">
-        <kbd>F</kbd>
-        <span class="sound"></span>
-      </div>
-      <div class="key" data-key="71">
-        <kbd>G</kbd>
-        <span class="sound"></span>
-      </div>
-      <div class="key" data-key="72">
-        <kbd>H</kbd>
-        <span class="sound"></span>
-      </div>
-      <div class="key" data-key="40">
-        <kbd><i class="fa fa-angle-down" aria-hidden="true"></i></kbd>
-        <span class="sound"></span>
-      </div>
+      <audio data-key="65" src="sound/a.mp3"></audio>
+      <audio data-key="83" src="sound/b.mp3"></audio>
+      <audio data-key="68" src="sound/c.mp3"></audio>
+      <audio data-key="70" src="sound/d.mp3"></audio>
+      <audio data-key="71" src="sound/e.mp3"></audio>
+      <audio data-key="72" src="sound/f.mp3"></audio>
+      <audio data-key="40" src="sound/h.mp3"></audio>
     </div>
-    <audio data-key="65" src="sound/a.mp3"></audio>
-    <audio data-key="83" src="sound/b.mp3"></audio>
-    <audio data-key="68" src="sound/c.mp3"></audio>
-    <audio data-key="70" src="sound/d.mp3"></audio>
-    <audio data-key="71" src="sound/e.mp3"></audio>
-    <audio data-key="72" src="sound/f.mp3"></audio>
-    <audio data-key="40" src="sound/a.mp3"></audio>
-  </div>
-  <script>
-    function playSound(e) {
-      const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
-      const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
-      if (!audio) return;
-      audio.currentTime = 0;
-      audio.play();
-      key.classList.add('playing');
-    }
+  </section>
 
-    function removeTransition(e) {
-      if (e.propertyName !== 'transform') return;
-      this.classList.remove('playing');
-    }
-    const keys = document.querySelectorAll('.key');
-    keys.forEach(key => key.addEventListener('transitionend', removeTransition));
-    window.addEventListener('keydown', playSound);
-  </script>
+  <script src="js/custom.js"></script>
 </body>
 
 </html>
